@@ -12,8 +12,8 @@ con.connect((err) => {
         console.log("Connecté à la base de données MySQL!");
     }
 });
-
-exports.con = con;
-exports.con.asyncQuery = (sql, args) => {
+con.asyncQuery = (sql, args) => {
     return util.promisify(con.query).call(con, sql, args);
 }
+
+exports.con = con;
