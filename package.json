@@ -1,7 +1,10 @@
 {
   "name": "devmobapi",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple API for a simple school",
+  "apidoc": {
+    "name": "DevMobAPI"
+  },
   "main": "index.js",
   "scripts": {
     "stat": "node index.js",
