@@ -48,7 +48,7 @@ app.get('/etudiants', (req, res) => {
  * ]
  */
 app.get('/etudiants/:id', (req, res) => {
-    const id = parseInt(req.params.id)
+    const { id } = req.params
     db.query(`SELECT * FROM etudiant WHERE id_etudiant=${id}`, (err, data) => {
         res.status(200).json(data);
     });

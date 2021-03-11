@@ -94,7 +94,7 @@ app.get('/projets', (req, res) => {
  * ]
  */
 app.get('/projets/:id', (req, res) => {
-    const id = parseInt(req.params.id);
+    const { id } = req.params;
     db.query(`SELECT * FROM projet WHERE id_projet=${id}`, (err, dataProj) => {
         db.query(`SELECT id_etudiant FROM participe_projet WHERE id_projet=${id}`, (err, dataStud) => {
             db.query(`SELECT id_evaluateur, type_notation, note_1, note_2, note_3, commentaire FROM notation WHERE id_projet=${id}`, (err, dataNote) => {
