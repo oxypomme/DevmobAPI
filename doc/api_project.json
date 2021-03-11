@@ -1,5 +1,8 @@
 {
   "name": "DevMobAPI",
+  "template": {
+    "withCompare": false
+  },
   "version": "1.0.0",
   "description": "A simple API for a simple school",
   "sampleUrl": false,
@@ -7,7 +10,7 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2021-03-11T13:25:26.939Z",
+    "time": "2021-03-11T13:28:46.345Z",
     "url": "https://apidocjs.com",
     "version": "0.26.0"
   }

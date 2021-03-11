@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "A simple API for a simple school",
   "apidoc": {
-    "name": "DevMobAPI"
+    "name": "DevMobAPI",
+    "template": {
+      "withCompare": false
+    }
   },
   "main": "index.js",
   "scripts": {
