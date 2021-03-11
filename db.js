@@ -6,7 +6,7 @@ const con = mysql.createConnection(credits);
 
 con.connect((err) => {
     if (err) {
-        console.err(err);
+        console.log("MySQL: ", err);
     }
     else {
         console.log("Connecté à la base de données MySQL!");
@@ -16,4 +16,4 @@ con.asyncQuery = (sql, args) => {
     return util.promisify(con.query).call(con, sql, args);
 }
 
-exports.con = con;
+exports.db = con;
