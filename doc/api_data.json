@@ -95,6 +95,68 @@
     "groupTitle": "Evaluators"
   },
   {
+    "type": "post",
+    "url": "/notes",
+    "title": "Post New Notation",
+    "name": "PostNotation",
+    "group": "Notation",
+    "description": "<p>Post a new note</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSONObject",
+            "optional": false,
+            "field": "result",
+            "description": "<p>The result of the operation</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Example data on success:",
+          "content": "{\n   \"result\": {\n     \"fieldCount\": 0,\n     \"affectedRows\": 1,\n     \"insertId\": 0,\n     \"serverStatus\": 2,\n     \"warningCount\": 0,\n     \"message\": \"\",\n     \"protocol41\": true,\n     \"changedRows\": 0\n   },\n   \"error\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/notes.js",
+    "groupTitle": "Notation"
+  },
+  {
+    "type": "put",
+    "url": "/notes",
+    "title": "Edit Notation",
+    "name": "PutNotation",
+    "group": "Notation",
+    "description": "<p>Edit a note</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSONObject",
+            "optional": false,
+            "field": "result",
+            "description": "<p>The result of the operation</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Example data on success:",
+          "content": "{\n   \"result\": {\n     \"fieldCount\": 0,\n     \"affectedRows\": 1,\n     \"insertId\": 0,\n     \"serverStatus\": 2,\n     \"warningCount\": 0,\n     \"message\": \"\",\n     \"protocol41\": true,\n     \"changedRows\": 0\n   },\n   \"error\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "api/notes.js",
+    "groupTitle": "Notation"
+  },
+  {
     "type": "get",
     "url": "/projets",
     "title": "Request All Projects Information",
