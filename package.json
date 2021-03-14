@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "stat": "node index.js",
+    "start": "node index.js",
     "start:dev": "nodemon"
   },
   "repository": {
