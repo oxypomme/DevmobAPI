@@ -10,7 +10,9 @@ const { db } = require('../db');
  * @apiSuccess {JSONArray} result The students
  * 
  * @apiSuccessExample Example data on success:
- * [
+ * {
+ *  "code": "RQ_ALL_ETU",
+ *  "data": [
  *   {
  *      "id_evaluateur": 2,
  *      "nom": "LAROCHE",
@@ -21,11 +23,15 @@ const { db } = require('../db');
  *      "nom": "PONSIGNON",
  *      "prenom": "Laurine"
  *   }
- * ]
+ *  ]
+ * }
  */
 app.get('/etudiants', (req, res) => {
     db.query("SELECT * FROM etudiant", (err, data) => {
-        res.status(200).json(data);
+        res.status(200).json({
+            code: "RQ_ALL_ETU",
+            data
+        });
     });
 });
 
@@ -39,17 +45,23 @@ app.get('/etudiants', (req, res) => {
  * @apiSuccess {JSONArray} result The students with the id
  * 
  * @apiSuccessExample Example data on success:
- * [
+ * {
+ *  "code": "RQ_ETU",
+ *  "data": [
  *   {
  *      "id_etudiant": 1,
  *      "nom": "BOMBARDIER",
  *      "prenom": "Julien"
  *   }
- * ]
+ *  ]
+ * }
  */
 app.get('/etudiants/:id', (req, res) => {
     const { id } = req.params
     db.query(`SELECT * FROM etudiant WHERE id_etudiant=${id}`, (err, data) => {
-        res.status(200).json(data);
+        res.status(200).json({
+            code: "RQ_ALL_ETU",
+            data
+        });
     });
 })

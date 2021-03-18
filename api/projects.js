@@ -10,7 +10,9 @@ const { db } = require('../db');
  * @apiSuccess {JSONArray} result The projects
  * 
  * @apiSuccessExample Example data on success:
- *   [
+ * {
+ *   "code": "RQ_ALL_PROJ",
+ *   "data": [
  *       {
  *           "id_projet": 1,
  *           "numero": 1,
@@ -43,18 +45,25 @@ const { db } = require('../db');
  *           "notes": []
  *       }
  *   ]
+ * }
  */
 app.get('/projets', (req, res) => {
     db.query("SELECT * FROM projet", async (err, dataProj) => {
-        res.status(200).json(await Promise.all(dataProj.map(async proj => {
-            const dataStud = await db.asyncQuery(`SELECT id_etudiant FROM participe_projet WHERE id_projet=${proj.id_projet}`);
-            const dataNote = await db.asyncQuery(`SELECT id_evaluateur, type_notation, note_1, note_2, note_3, commentaire FROM notation WHERE id_projet=${proj.id_projet}`)
-            return ({
-                ...proj,
-                etudiants: dataStud.map(stud => stud.id_etudiant),
-                notes: dataNote
+        if (dataProj) {
+            res.status(200).json({
+                code: "RQ_ALL_PROJ",
+                data: await Promise.all(dataProj.map(async proj => {
+                    const dataStud = await db.asyncQuery(`SELECT id_etudiant FROM participe_projet WHERE id_projet=${proj.id_projet}`);
+                    const dataNote = await db.asyncQuery(`SELECT id_evaluateur, type_notation, note_1, note_2, note_3, commentaire FROM notation WHERE id_projet=${proj.id_projet}`)
+                    return ({
+                        ...proj,
+                        etudiants: dataStud.map(stud => stud.id_etudiant),
+                        notes: dataNote
+                    });
+                }))
             });
-        })));
+        }
+        return null;
     });
 });
 
@@ -68,8 +77,10 @@ app.get('/projets', (req, res) => {
  * @apiSuccess {JSONArray} result The projects with the id
  * 
  * @apiSuccessExample Example data on success:
- * [
- *   {
+ * {
+ *   "code": "RQ_PROJ",
+ *   "data": [
+ *     {
  *       {
  *           "id_projet": 1,
  *           "numero": 1,
@@ -90,19 +101,23 @@ app.get('/projets', (req, res) => {
  *               }
  *           ]
  *       }
- *   }
- * ]
+ *     }
+ *   ]
+ * }
  */
 app.get('/projets/:id', (req, res) => {
     const { id } = req.params;
     db.query(`SELECT * FROM projet WHERE id_projet=${id}`, (err, dataProj) => {
         db.query(`SELECT id_etudiant FROM participe_projet WHERE id_projet=${id}`, (err, dataStud) => {
             db.query(`SELECT id_evaluateur, type_notation, note_1, note_2, note_3, commentaire FROM notation WHERE id_projet=${id}`, (err, dataNote) => {
-                res.status(200).json(dataProj.map(proj => ({
-                    ...proj,
-                    ids_etudiant: dataStud.map(stud => stud.id_etudiant),
-                    notes: dataNote
-                })));
+                res.status(200).json({
+                    code: "RQ_PROJ",
+                    data: dataProj.map(proj => ({
+                        ...proj,
+                        ids_etudiant: dataStud.map(stud => stud.id_etudiant),
+                        notes: dataNote
+                    }))
+                });
             });
         });
     });
